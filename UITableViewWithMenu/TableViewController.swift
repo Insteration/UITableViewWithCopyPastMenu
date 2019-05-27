@@ -109,21 +109,22 @@ extension TableViewController {
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         
         let pasteBoard = UIPasteboard.general
+        let cell = tableView.cellForRow(at: indexPath)
         
-        if action == #selector(copy(_:)) {
-            let cell = tableView.cellForRow(at: indexPath)
+        switch action {
+        case #selector(copy(_:)):
             pasteBoard.string = cell?.textLabel?.text
-        } else if action == #selector(paste(_:)) {
+        case #selector(paste(_:)):
             names[indexPath.row] = pasteBoard.string!
             tableView.reloadData()
-        } else if action == #selector(delete(_:)) {
-//            self.names.remove(at: indexPath.row)
-//            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        } else if action == #selector(cut(_:)) {
-            let cell = tableView.cellForRow(at: indexPath)
+        case #selector(delete(_:)):
+            print("delete")
+        case #selector(cut(_:)):
             pasteBoard.string = cell?.textLabel?.text
             names[indexPath.row] = ""
             tableView.reloadData()
-        }
+        default:
+            ()
+        }        
     }
 }
