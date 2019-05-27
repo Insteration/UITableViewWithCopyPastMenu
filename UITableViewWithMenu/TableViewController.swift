@@ -93,11 +93,17 @@ extension TableViewController {
         case #selector(paste(_:)):
             print("paste")
             return true
+        case #selector(delete(_:)):
+            print("delete")
+            return true
+        case #selector(cut(_:)):
+            print("cut")
+            return true
         default:
             ()
         }
         
-        return false // if treu that added all items in menu by pasteboard
+        return false // if true that added all items in menu by pasteboard
     }
     
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
@@ -109,6 +115,14 @@ extension TableViewController {
             pasteBoard.string = cell?.textLabel?.text
         } else if action == #selector(paste(_:)) {
             names[indexPath.row] = pasteBoard.string!
+            tableView.reloadData()
+        } else if action == #selector(delete(_:)) {
+//            self.names.remove(at: indexPath.row)
+//            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        } else if action == #selector(cut(_:)) {
+            let cell = tableView.cellForRow(at: indexPath)
+            pasteBoard.string = cell?.textLabel?.text
+            names[indexPath.row] = ""
             tableView.reloadData()
         }
     }
