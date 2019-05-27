@@ -33,7 +33,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Names" id="y6N-Yd-Zne">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="M49-2c-TNB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="M49-2c-TNB">
                             <connections>
                                 <action selector="editTableViewButton:" destination="mg3-zN-qDm" id="0WH-Ly-eKU"/>
                             </connections>

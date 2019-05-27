@@ -97,7 +97,7 @@ extension TableViewController {
             ()
         }
         
-        return false
+        return false // if treu that added all items in menu by pasteboard
     }
     
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
