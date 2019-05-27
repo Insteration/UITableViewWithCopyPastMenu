@@ -85,19 +85,31 @@ extension TableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?)  -> Bool {
-        if action == #selector(copy(_:)) {
-            print("Copy")
+        
+        switch action {
+        case #selector(copy(_:)):
+            print("copy")
             return true
+        case #selector(paste(_:)):
+            print("paste")
+            return true
+        default:
+            ()
         }
         
         return false
     }
     
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        
+        let pasteBoard = UIPasteboard.general
+        
         if action == #selector(copy(_:)) {
             let cell = tableView.cellForRow(at: indexPath)
-            let pasteBoard = UIPasteboard.general
             pasteBoard.string = cell?.textLabel?.text
+        } else if action == #selector(paste(_:)) {
+            names[indexPath.row] = pasteBoard.string!
+            tableView.reloadData()
         }
     }
 }
